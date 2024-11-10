@@ -1,0 +1,22 @@
+{
+  "name": "kloc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+      "kloc": "./index.js"
+  },
+  "author": {
+      "name": "Anav Chand",
+      "url": "https://www.anav.dev"
+  },
+  "license": "MIT",
+  "keywords": ["kloc", "cli", "loc"],
+  "description": "A simple CLI tool to count lines of code in current directory",
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}
