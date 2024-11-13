@@ -63,8 +63,6 @@ program
                 klocTable()
                 break
         }
-
-        console.log("Built by https://anav.dev");
     });
 
 program.parse(process.argv);
