@@ -20,11 +20,11 @@ const countKloc = (path, loc = 0) => {
         }
     })
 
-    return (loc / 1000).toPrecision(3)
+    return loc 
 }
 
 export const klocOneline = () => {
     const koc = countKloc(process.cwd())
     const name = basename(process.cwd())
-    console.log("Kloc for " + name, koc)
+    console.log("Loc for " + name, koc)
 }

@@ -22,7 +22,7 @@ const printKloc = (path, level, prefix = "") => {
         else {
             const file = readFileSync(itemPath, "utf8").toString()
             const loc = file.split("\n").length
-            console.log(prefix + branch + item + " (" + loc + " loc)")
+            console.log(prefix + branch + item, loc)
         }
     })
 }
