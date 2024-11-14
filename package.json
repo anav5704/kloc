@@ -19,9 +19,10 @@
         "cli",
         "loc"
     ],
-    "description": "A simple CLI tool to count lines of code in current directory",
+    "description": "A simple CLI tool to count lines of code in current working directory",
     "dependencies": {
         "@inquirer/prompts": "^7.1.0",
-        "commander": "^12.1.0"
+        "commander": "^12.1.0",
+        "table": "^6.8.2"
     }
 }
