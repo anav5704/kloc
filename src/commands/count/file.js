@@ -1,4 +1,4 @@
-import { validateFile, validateDir } from "../utils/validateItem.js"
+import { validateFile, validateDir } from "../../utils/validateItem.js"
 import { readFileSync, readdirSync, statSync } from "fs"
 import { basename, join } from "path"
 
@@ -28,6 +28,6 @@ const printKloc = (path, level, prefix = "") => {
 }
 
 export const klocFile = () => {
-    console.log(basename(process.cwd()))
+    console.log("\n" + basename(process.cwd()))
     printKloc(process.cwd(), 0)
 }

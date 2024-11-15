@@ -1,6 +1,6 @@
-import { validateFile, validateDir } from "../utils/validateItem.js"
+import { validateFile, validateDir } from "../../utils/validateItem.js"
 import { readFileSync, readdirSync, statSync } from "fs"
-import { config } from "../../src/utils/tableConfig.js"
+import { config } from "../../utils/tableConfig.js"
 import { table } from 'table'
 import { join } from "path"
 
@@ -39,6 +39,6 @@ export const klocTable = () => {
         formattedTableData.push([language, loc])
     })
 
-    console.table(table(formattedTableData, config))
+    console.log("\n" + table(formattedTableData, config).trim())
 }
 

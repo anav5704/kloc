@@ -1,4 +1,4 @@
-import { validateFile, validateDir } from "../utils/validateItem.js"
+import { validateFile, validateDir } from "../../utils/validateItem.js"
 import { readFileSync, readdirSync, statSync } from "fs"
 import { basename, join } from "path"
 
@@ -26,5 +26,5 @@ const countKloc = (path, loc = 0) => {
 export const klocOneline = () => {
     const koc = countKloc(process.cwd())
     const name = basename(process.cwd())
-    console.log("Loc for " + name, koc)
+    console.log("\nLoc for " + name, koc)
 }

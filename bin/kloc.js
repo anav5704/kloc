@@ -1,36 +1,83 @@
 #!/usr/bin/env Node
 
-import { klocOneline, klocFile, klocTable } from "../src/commands/index.js";
-import { ONELINE, FILE, TABLE } from "../src/utils/constants.js"
+import { klocOneline, klocFile, klocTable } from "../src/commands/count/index.js";
+import { CONFIG, IGNORE, ONELINE, FILE, TABLE } from "../src/utils/constants.js"
+import { klocConfig, klocIgnore } from "../src/commands/get/index.js";
 import { select } from "@inquirer/prompts";
 import { program } from "commander";
 
-
 program
-    // CLI details
     .version("1.0.0")
     .name("Kloc")
     .description("Count lines of code in current directory")
 
-    // Flag options
+program
+    .command("get")
+    .description("Get path for configuration files")
+
+    .option("-c, --config", "Print path of kloc.config.json file")
+    .option("-i, --ignore", "Print path of .klocignore file")
+
+    .action(async (options) => {
+        let getType = 0
+
+        if (options.config) getType = CONFIG
+
+        else if (options.ignore) getType = IGNORE
+
+        else {
+            const answer = await select({
+                theme: {
+                    prefix: "\n"
+                },
+                message: "Which file would you like to get?",
+                choices: [
+                    {
+                        name: "config.config.json",
+                        value: CONFIG,
+                    },
+                    {
+                        name: ".klocignore",
+                        value: IGNORE,
+                    },
+                ],
+            })
+
+            getType = answer
+        }
+
+        switch (getType) {
+            case CONFIG:
+                klocConfig()
+                break
+            case IGNORE:
+                klocIgnore()
+                break
+        }
+    })
+
+program
+    .command("count")
+    .description("Count lines of code")
+
     .option("-o, --oneline", "Display total lines of code")
     .option("-f, --file", "Display lines of code for each file (tree format)")
     .option("-t, --table", "Display lines of code for each language (table format)")
 
-    // Main logic
     .action(async (options) => {
-        let klocType = 0
-        console.log("");
+        let countType = 0
 
-        if (options.oneline) klocType = ONELINE
+        if (options.oneline) countType = ONELINE
 
-        else if (options.file) klocType = FILE
+        else if (options.file) countType = FILE
 
-        else if (options.table) klocType = TABLE
+        else if (options.table) countType = TABLE
 
-        // Fallback for no flags using select
         else {
             const answer = await select({
+                theme: {
+                    prefix: "\n"
+                },
                 message: "How would you like to format the output?",
                 choices: [
                     {
@@ -46,13 +93,12 @@ program
                         value: TABLE,
                     },
                 ],
-            });
+            })
 
-            console.log("")
-            klocType = answer
+            countType = answer
         }
 
-        switch (klocType) {
+        switch (countType) {
             case ONELINE:
                 klocOneline()
                 break
@@ -63,6 +109,6 @@ program
                 klocTable()
                 break
         }
-    });
+    })
 
 program.parse(process.argv);
