@@ -1,4 +1,5 @@
-import { readFileSync, readdirSync, statSync} from "fs"
+import { validateFile, validateDir } from "../utils/validateItem.js"
+import { readFileSync, readdirSync, statSync } from "fs"
 import { config } from "../../src/utils/tableConfig.js"
 import { table } from 'table'
 import { join } from "path"
@@ -10,21 +11,20 @@ const countKloc = (path) => {
     const root = readdirSync(path)
 
     root.forEach((item) => {
-        if(item == "node_modules") return
-        if(item.startsWith(".")) return
-
         const itemPath = join(path, item)
 
-        if(statSync(itemPath).isDirectory()) {
+        if (statSync(itemPath).isDirectory() && validateDir(item)) {
             countKloc(itemPath)
-        } 
+        }
 
         else {
-            const file = readFileSync(itemPath, "utf8").toString()
-            const extension = item.split(".").pop()
+            if (validateFile(item)) {
+                const file = readFileSync(itemPath, "utf8").toString()
+                const extension = item.split(".").pop()
 
-            if (!tableData[extension]) tableData[extension] = 0
-            tableData[extension] += file.split("\n").length
+                if (!tableData[extension]) tableData[extension] = 0
+                tableData[extension] += file.split("\n").length
+            }
         }
     })
 
@@ -33,7 +33,9 @@ const countKloc = (path) => {
 export const klocTable = () => {
     countKloc(process.cwd())
 
-    Object.entries(tableData).forEach(([language, loc]) => {
+    const sortedTableData = Object.entries(tableData).sort(([, locA], [, locB]) => locB - locA)
+
+    sortedTableData.forEach(([language, loc]) => {
         formattedTableData.push([language, loc])
     })
 
