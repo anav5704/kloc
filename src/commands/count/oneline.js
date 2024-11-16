@@ -2,14 +2,15 @@ import { validateFile, validateDir } from "../../utils/validateItem.js"
 import { readFileSync, readdirSync, statSync } from "fs"
 import { basename, join } from "path"
 
-const countKloc = (path, loc = 0) => {
+const countKloc = (path) => {
+    let loc = 0
     const root = readdirSync(path)
 
     root.forEach((item) => {
         const itemPath = join(path, item)
 
         if (statSync(itemPath).isDirectory() && validateDir(item)) {
-            countKloc(itemPath, loc)
+            loc += countKloc(itemPath)
         }
 
         else {
