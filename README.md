@@ -12,7 +12,7 @@ npm i -g kloc-cli@latest
 
 You can use kloc by providing flags for each command, or by running the commands without flags. If you use flags, the corresponding function will run. If you run a command without flags, you will be given a list of options to chose from for that specific command.
 
-# Commands
+## Commands
 
 Kloc has 2 sets of commands, one set to configure kloc and the other set to use kloc.
 
