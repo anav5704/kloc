@@ -1,6 +1,6 @@
 {
-    "name": "kloc",
-    "version": "1.0.0",
+    "name": "kloc-cli",
+    "version": "2.1.0",
     "main": "index.js",
     "type": "module",
     "bin": {
@@ -9,6 +9,10 @@
     "author": {
         "name": "Anav Chand",
         "url": "https://www.anav.dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/anav5704/kloc"
     },
     "license": "MIT",
     "keywords": [
