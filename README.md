@@ -1,10 +1,4 @@
  ![Kloc](./docs/kloc.png)
- 
-<div align="center">
-    <h2>
-        Count lines of code in the current working directory.  
-    </h2>
-</div>
 
 ## Installation  
 
