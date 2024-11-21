@@ -1,10 +1,14 @@
  ![Kloc](./docs/kloc.png)
  
 <div align="center">
-    Count lines of code in the current working directory.  
+    <h2>
+        Count lines of code in the current working directory.  
+    </h2>
 </div>
 
 ## Installation  
+
+Make sure you nave [Node.js](https://nodejs.org) installed. Then run:
 
 ```sh
 npm i -g kloc-cli@latest
