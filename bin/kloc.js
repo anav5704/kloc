@@ -1,4 +1,4 @@
-#!/usr/bin/env Node
+#!/usr/bin/env node
 
 import { klocOneline, klocFile, klocTable } from "../src/commands/count/index.js";
 import { CONFIG, IGNORE, ONELINE, FILE, TABLE } from "../src/utils/constants.js"
