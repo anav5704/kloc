@@ -1,4 +1,6 @@
  ![Kloc](./docs/kloc.png)
+ 
+[kloc.webm](https://github.com/user-attachments/assets/3a32a4f8-f17a-4d37-a16a-59de637c4d8a)
 
 ## Installation  
 
